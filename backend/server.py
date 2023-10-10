@@ -28,3 +28,4 @@ if __name__ == '__main__':
 
 # [submodule "google-login]
 #   path = google-login
+#   url = https://github.com/daniel620/protop
