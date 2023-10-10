@@ -25,3 +25,6 @@ def google_auth():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# [submodule "google-login]
+#   path = google-login
