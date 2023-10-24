@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Selector</title>
+</head>
+<body>
+    {% macro render_tree(file_tree, indent=0) %}
+        <ul>
+            {% for node in file_tree %}
+                <li style="margin-left: {{ indent }}em;">
+                    {% if node.file.mimeType != 'application/vnd.google-apps.folder' %}
+                        <a href="/file/{{ node.file.id }}">{{ node.file.name }}</a>
+                    {% else %}
+                        {{ node.file.name }}
+                    {% endif %}
+                    {% if node.children %}
+                        {{ render_tree(node.children, indent + 1) }}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endmacro %}
+
+    <h1>Select a file:</h1>
+    {{ render_tree(file_tree) }}
+</body>
+</html>
