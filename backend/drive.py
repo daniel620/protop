@@ -65,7 +65,9 @@ def test_api_request():
     #              credentials in a persistent database instead.
     flask.session['credentials'] = credentials_to_dict(credentials)
 
-    return flask.jsonify(**files)
+    # return flask.jsonify(**files)
+    return flask.render_template('test.html', files_json=flask.json.dumps(files))
+
 
 @app.route('/file/<file_id>')
 def get_file(file_id):
@@ -108,7 +110,8 @@ def get_file(file_id):
         as_attachment=True,
         download_name=f'downloaded_file{file_extension}'
     )
-    response.headers["Content-Disposition"] = f"attachment; filename=downloaded_file{file_extension}"
+    # response.headers["Content-Disposition"] = f"attachment; filename=downloaded_file{file_extension}"
+    response.headers["Content-Disposition"] = f"inline; filename=downloaded_file{file_extension}"
     return response
 
 @app.route('/authorize')

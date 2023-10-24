@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>File Selector</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div id="file-data" style="display:none;">{{ files_json|safe }}</div>
+  <h1>Select a file:</h1>
+  <ul id="file-list">
+    <!-- File list will be populated here -->
+  </ul>
+
+  <script>
+    // Populate the file list
+    $(document).ready(function() {
+      const files = JSON.parse(document.getElementById("file-data").textContent).files;
+      for (const file of files) {
+        $("#file-list").append(`<li><a href="/file/${file.id}">${file.name}</a></li>`);
+      }
+    });
+  </script>
+</body>
+</html>
